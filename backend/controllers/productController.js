@@ -19,25 +19,26 @@ exports.newProducts = catchAsyncErrors(async (req, res, next) => {
 })
 
 // Get all products   =>   /api/v1/products?keyword=apple
+// backend will get pageNo from frontend passed in api 
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
-    const resPerPage = 4;
+    const resPerPage = 6;
     const productsCount = await Product.countDocuments();
     const apiFeatures = new APIFeatures(Product.find(), req.query)
         .search()
         .filter()
-        .pagination(resPerPage)
 
     let products = await apiFeatures.query;
     let filteredProductsCount = products.length;
 
     apiFeatures.pagination(resPerPage)
     products = await apiFeatures.query;
-
     res.status(200).json({
         success: true,
-        count: products.length,
-        // productCount,
+        // count: products.length,
+        productsCount,
+        resPerPage,
+        filteredProductsCount,
         products
     })
 })
