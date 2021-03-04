@@ -8,11 +8,14 @@ import { useAlert } from 'react-alert'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetails, newReview, clearErrors } from '../../actions/productActions'
-
+import {addItemToCart} from '../../actions/cartActions'
 
 
 const ProductDetails = ({ match }) => {
 
+    const [quantity, setQuantity] = useState(1)
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState('');
     const alert = useAlert();
 
     const dispatch = useDispatch();
@@ -37,6 +40,32 @@ const ProductDetails = ({ match }) => {
         // }
 
     }, [dispatch, alert, error, match.params.id])
+
+    const addToCart = () => {
+        dispatch(addItemToCart(match.params.id, quantity));
+        alert.success('Item Added to Cart')
+    }
+
+    const increaseQty = () => {
+        const count = document.querySelector('.count')
+
+        if (count.valueAsNumber >= product.stock) return;
+
+        const qty = count.valueAsNumber + 1;
+        setQuantity(qty)
+    }
+
+    const decreaseQty = () => {
+
+        const count = document.querySelector('.count')
+
+        if (count.valueAsNumber <= 1) return;
+
+        const qty = count.valueAsNumber - 1;
+        setQuantity(qty)
+
+    }
+
 
 
     return (
@@ -71,13 +100,13 @@ const ProductDetails = ({ match }) => {
 
                             <p id="product_price">{product.price}</p>
                             <div className="stockCounter d-inline">
-                                <span className="btn btn-danger minus">-</span>
+                                <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
 
-                                <input type="number" className="form-control count d-inline" value="1" readOnly />
+                                <input type="number" className="form-control count d-inline" value={quantity} readOnly />
 
-                                <span className="btn btn-primary plus">+</span>
+                                <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
                             </div>
-                            <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4">Add to Cart</button>
+                            <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0} onClick={addToCart}>Add to Cart</button>
 
                             <hr />
 
