@@ -11,8 +11,8 @@ import { newOrderReducer, myOrdersReducer, orderDetailsReducer, allOrdersReducer
 const reducer = combineReducers({
     products: productsReducer,
     productDetails: productDetailsReducer,
-    // newProduct: newProductReducer,
-    // product: productReducer,
+    newProduct: newProductReducer,
+    product: productReducer,
     // productReviews: productReviewsReducer,
     // review: reviewReducer,
     auth: authReducer,
@@ -23,10 +23,10 @@ const reducer = combineReducers({
     cart: cartReducer,
     newOrder: newOrderReducer,
     myOrders: myOrdersReducer,
-    // allOrders: allOrdersReducer,
-    // orderDetails: orderDetailsReducer,
+    allOrders: allOrdersReducer,
+    orderDetails: orderDetailsReducer,
     // order: orderReducer,
-    // newReview: newReviewReducer
+    newReview: newReviewReducer
 })
 
 
