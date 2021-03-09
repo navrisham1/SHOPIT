@@ -33,6 +33,10 @@ import ProductsList from './components/admin/ProductsList'
 import NewProduct from './components/admin/NewProduct'
 import UpdateProduct from './components/admin/UpdateProduct'
 import OrdersList from './components/admin/OrdersList'
+import ProcessOrder from './components/admin/ProcessOrder'
+import UsersList from './components/admin/UsersList'
+import UpdateUser from './components/admin/UpdateUser'
+import ProductReviews from './components/admin/ProductReviews'
 
 
 import ProtectedRoute from './components/route/ProtectedRoute'
@@ -45,6 +49,7 @@ import axios from 'axios'
 // Payment
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
+import { productReviewsReducer } from './reducers/productReducers'
 
 function App() {
 
@@ -101,6 +106,10 @@ function App() {
         <ProtectedRoute path ="/admin/product" isAdmin={true} component={NewProduct} exact />
         <ProtectedRoute path ="/admin/product/:id" isAdmin={true} component={UpdateProduct} exact />
         <ProtectedRoute path ="/admin/orders" isAdmin={true} component={OrdersList} exact />
+        <ProtectedRoute path ="/admin/order/:id" isAdmin={true} component={ProcessOrder} exact />
+        <ProtectedRoute path ="/admin/users" isAdmin={true} component={UsersList} exact />
+        <ProtectedRoute path ="/admin/user/:id" isAdmin={true} component={UpdateUser} exact />
+        <ProtectedRoute path ="/admin/reviews" isAdmin={true} component={ProductReviews} exact />
 
         {!loading && (!isAuthenticated || user.role !== 'admin') && (
 

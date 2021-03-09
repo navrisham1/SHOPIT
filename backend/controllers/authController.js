@@ -23,14 +23,13 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     const user = await User.create({
         name,
         email,
-        password
-        ,
+        password,
         avatar: {
             public_id: result.public_id,
             url: result.secure_url
         }
     })
-
+    
     sendToken(user, 200, res)
 
 })
