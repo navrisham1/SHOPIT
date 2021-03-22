@@ -1,0 +1,13 @@
+ [
+        {
+            "avatar": {
+                "public_id": "avatars/bz71woqyit1nkuxrejvr",
+                "url": "https://res.cloudinary.com/diaubgqhh/image/upload/v1615385207/avatars/bz71woqyit1nkuxrejvr.png"
+            },
+            "role": "admin",
+            "name": "Shop IT",
+            "email": "testmy@test.com",
+            "password":"$2a$10$YAPPYXPqCYdOI.P0KRP8jeaJmHeKx9eLgS/A6tnf3JheZTflPnPfa",
+            "createdAt": "2021-03-09T21:10:18.392Z"
+        }
+    ]
